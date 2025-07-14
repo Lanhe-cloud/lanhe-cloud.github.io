@@ -1,2 +1,180 @@
-<h1>This is a test that push in github cloud.<h1>
-<h1>版权所有©️东莞市澜和餐饮管理有限公司<h1>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澜和餐饮管理有限公司</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+       <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 25%, #EC4899 75%, #F472B6 100%);
+            }
+            .gradient-bg-animated {
+                background: linear-gradient(-45deg, #6366F1, #8B5CF6, #EC4899, #F472B6);
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+            }
+            .glass-effect {
+                backdrop-filter: blur(12px);
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">味道管理</a>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#stats">数据</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1>重新定义餐饮管理</h1>
+            <p>专业的餐饮管理解决方案，让您的餐厅运营更高效、更智能</p>
+            <a href="#contact" class="cta-button">立即开始</a>
+        </div>
+    </section>
+
+    <!-- 服务区域 -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🍽️</div>
+                    <h3>餐厅运营管理</h3>
+                    <p>提供全方位的餐厅运营管理服务，包括人员管理、库存控制、成本分析等，帮助您提升运营效率。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>数据分析系统</h3>
+                    <p>通过先进的数据分析技术，为您提供销售趋势、客户行为分析，助力科学决策。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>数字化转型</h3>
+                    <p>帮助传统餐厅完成数字化转型，整合线上线下资源，提升品牌竞争力。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>智能推荐系统</h3>
+                    <p>基于AI技术的智能推荐系统，优化菜品搭配，提升客户满意度和复购率。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>技术支持</h3>
+                    <p>24/7专业技术支持团队，确保系统稳定运行，随时解决您的技术问题。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>营销策略</h3>
+                    <p>制定个性化营销策略，通过精准营销提升客户转化率和品牌知名度。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 统计区域 -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">成功数据</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">NaN</div>
+                    <div class="stat-label">合作餐厅</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">NaN</div>
+                    <div class="stat-label">客户满意度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">平均效率提升</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">技术支持</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系区域 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3>获取免费咨询</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">电话</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">需求描述</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">提交咨询</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>联系信息</h3>
+                    <p><strong>📍 地址：</strong>广东省东莞市澜大岭山镇金桔优艺街2号1栋202室</p>
+                    <p><strong>📞 电话：</strong>+86 136 8018 7389</p>
+                    <p><strong>📧 邮箱：</strong>lanhecatering@163.com</p>
+                    <p><strong>🕒 营业时间：</strong>周一至周五 9:00-18:00</p>
+                    
+                    <h3 style="margin-top: 2rem;">为什么选择我们？</h3>
+                    <p>✅ 专业的技术团队</p>
+                    <p>✅ 量身定制的解决方案</p>
+                    <p>✅ 全程跟踪服务</p>
+                    <p>✅ 合理的价格体系</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+    <!-- 页脚 -->
+</html>
