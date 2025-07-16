@@ -1,0 +1,23 @@
+    /* 自定义工具类  */
+
+@layer utilities {
+    .content-auto {
+        content-visibility: auto;
+    }
+    .form-input-focus {
+        @apply focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all duration-300;
+    }
+    .btn-hover {
+        @apply hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300;
+    }
+    .floating {
+        animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    .gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+    }
+}

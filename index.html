@@ -1,180 +1,421 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>澜和餐饮管理有限公司</title>
-    <link rel="stylesheet" href="style.css">
+    <title>智能高效 | 澜和餐饮管理有限公司</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="/js/3.4.16.js"></script>
+    <!-- 引入Font Awesome -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- 配置Tailwind自定义颜色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#ffd700',
+                        success: '#00B42A',
+                        danger: '#F53F3F',
+                        warning: '#FF7D00',
+                        dark: '#1D2129',
+                        light: '#F2F3F5'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-       <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .gradient-bg {
-                background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 25%, #EC4899 75%, #F472B6 100%);
-            }
-            .gradient-bg-animated {
-                background: linear-gradient(-45deg, #6366F1, #8B5CF6, #EC4899, #F472B6);
-                background-size: 400% 400%;
-                animation: gradient 15s ease infinite;
-            }
-            .glass-effect {
-                backdrop-filter: blur(12px);
-                background-color: rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-    </style>
+<body class="font-inter bg-gray-50 min-h-screen">
     <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">味道管理</a>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#services">服务</a></li>
-                <li><a href="#stats">数据</a></li>
-                <li><a href="#contact">联系</a></li>
+    <nav class="navbar fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="nav-container max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold gradient-text">澜和餐饮</a>
+            
+            <!-- 桌面导航 -->
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="text-dark hover:text-primary transition-colors font-medium">首页</a></li>
+                <li><a href="#services" class="text-dark hover:text-primary transition-colors font-medium">服务</a></li>
+                <li><a href="#stats" class="text-dark hover:text-primary transition-colors font-medium">数据</a></li>
+                <li><a href="#contact" class="text-dark hover:text-primary transition-colors font-medium">联系</a></li>
+            </ul>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-dark focus:outline-none" id="menuToggle">
+                <i class="fa fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="mobile-menu hidden bg-white shadow-lg absolute top-full left-0 w-full py-4 px-6 md:hidden" id="mobileMenu">
+            <ul class="space-y-4">
+                <li><a href="#home" class="block text-dark hover:text-primary transition-colors font-medium">首页</a></li>
+                <li><a href="#services" class="block text-dark hover:text-primary transition-colors font-medium">服务</a></li>
+                <li><a href="#stats" class="block text-dark hover:text-primary transition-colors font-medium">数据</a></li>
+                <li><a href="#contact" class="block text-dark hover:text-primary transition-colors font-medium">联系</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- 主要内容 -->
-    <section class="hero" id="home">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
+    <section class="hero min-h-screen flex items-center justify-center relative overflow-hidden" id="home">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary"></div>
+        
+        <!-- 浮动元素 -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="floating-element absolute bg-white/10 rounded-full w-32 h-32 top-20 left-10 floating"></div>
+            <div class="floating-element absolute bg-white/10 rounded-full w-24 h-24 top-1/3 right-1/4 floating" style="animation-delay: 1s;"></div>
+            <div class="floating-element absolute bg-white/10 rounded-full w-40 h-40 bottom-1/4 left-1/3 floating" style="animation-delay: 2s;"></div>
         </div>
-        <div class="hero-content">
-            <h1>重新定义餐饮管理</h1>
-            <p>专业的餐饮管理解决方案，让您的餐厅运营更高效、更智能</p>
-            <a href="#contact" class="cta-button">立即开始</a>
+        
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 leading-tight">
+                    重新定义<span class="text-accent">餐饮管理</span>
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.5rem)] text-white/90 mb-10">
+                    专业的餐饮管理解决方案，让餐厅运营更高效、更智能
+                </p>
+                <a href="#services" class="inline-block bg-gradient-to-r from-accent to-warning text-dark font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    立即开始 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- 服务区域 -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">我们的服务</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🍽️</div>
-                    <h3>餐厅运营管理</h3>
-                    <p>提供全方位的餐厅运营管理服务，包括人员管理、库存控制、成本分析等，帮助您提升运营效率。</p>
+    <section class="services py-20 bg-white" id="services">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold gradient-text mb-4">我们的服务</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">我们提供全方位的餐饮管理解决方案，帮助您的餐厅提升运营效率、降低成本、增加收益</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">🍽️</div>
+                    <h3 class="text-xl font-bold mb-4">餐厅运营管理</h3>
+                    <p class="text-gray-600">提供全方位的餐厅运营管理服务，包括人员管理、库存控制、成本分析等，帮助您提升运营效率。</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>数据分析系统</h3>
-                    <p>通过先进的数据分析技术，为您提供销售趋势、客户行为分析，助力科学决策。</p>
+                
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">📊</div>
+                    <h3 class="text-xl font-bold mb-4">数据分析系统</h3>
+                    <p class="text-gray-600">通过先进的数据分析技术，为您提供销售趋势、客户行为分析，助力科学决策。</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>数字化转型</h3>
-                    <p>帮助传统餐厅完成数字化转型，整合线上线下资源，提升品牌竞争力。</p>
+                
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">🚀</div>
+                    <h3 class="text-xl font-bold mb-4">数字化转型</h3>
+                    <p class="text-gray-600">帮助传统餐厅完成数字化转型，整合线上线下资源，提升品牌竞争力。</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>智能推荐系统</h3>
-                    <p>基于AI技术的智能推荐系统，优化菜品搭配，提升客户满意度和复购率。</p>
+                
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">💡</div>
+                    <h3 class="text-xl font-bold mb-4">智能推荐系统</h3>
+                    <p class="text-gray-600">基于AI技术的智能推荐系统，优化菜品搭配，提升客户满意度和复购率。</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>技术支持</h3>
-                    <p>24/7专业技术支持团队，确保系统稳定运行，随时解决您的技术问题。</p>
+                
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">🔧</div>
+                    <h3 class="text-xl font-bold mb-4">技术支持</h3>
+                    <p class="text-gray-600">24/7专业技术支持团队，确保系统稳定运行，随时解决您的技术问题。</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>营销策略</h3>
-                    <p>制定个性化营销策略，通过精准营销提升客户转化率和品牌知名度。</p>
+                
+                <div class="service-card bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="service-icon text-4xl text-primary mb-6">🎯</div>
+                    <h3 class="text-xl font-bold mb-4">营销策略</h3>
+                    <p class="text-gray-600">制定个性化营销策略，通过精准营销提升客户转化率和品牌知名度。</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 统计区域 -->
-    <section class="stats" id="stats">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">成功数据</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">NaN</div>
-                    <div class="stat-label">合作餐厅</div>
+    <section class="stats py-20 bg-gradient-to-br from-primary to-secondary text-white" id="stats">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">成功数据</h2>
+                <p class="text-white/80 max-w-2xl mx-auto">我们已帮助数百家餐厅实现业务增长，提升运营效率</p>
+                <div class="w-20 h-1 bg-white mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="stat-item text-center p-6 bg-white/10 backdrop-blur-md rounded-xl">
+                    <div class="stat-number text-4xl font-bold mb-2 text-accent">暂缺</div>
+                    <div class="stat-label text-white/90">合作餐厅</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">NaN</div>
-                    <div class="stat-label">客户满意度</div>
+                
+                <div class="stat-item text-center p-6 bg-white/10 backdrop-blur-md rounded-xl">
+                    <div class="stat-number text-4xl font-bold mb-2 text-accent">暂缺</div>
+                    <div class="stat-label text-white/90">客户满意度</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">35%</div>
-                    <div class="stat-label">平均效率提升</div>
+                
+                <div class="stat-item text-center p-6 bg-white/10 backdrop-blur-md rounded-xl">
+                    <div class="stat-number text-4xl font-bold mb-2 text-accent">暂缺</div>
+                    <div class="stat-label text-white/90">平均效率提升</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">技术支持</div>
+                
+                <div class="stat-item text-center p-6 bg-white/10 backdrop-blur-md rounded-xl">
+                    <div class="stat-number text-4xl font-bold mb-2 text-accent">暂缺</div>
+                    <div class="stat-label text-white/90">技术支持</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 联系区域 -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">联系我们</h2>
-            <div class="contact-content">
-                <div class="contact-form">
-                    <h3>获取免费咨询</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" name="name" required>
+    <section class="contact py-20 bg-gray-50" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold gradient-text mb-4">联系我们</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">无论您有任何问题或需求，我们的团队随时准备为您提供帮助</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-2/5 bg-primary/5 relative hidden md:block">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent"></div>
+                            <img src="https://picsum.photos/id/292/800/1200" alt="蓝禾餐饮服务" class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 p-8 text-white">
+                                <h3 class="text-2xl font-bold mb-2">联系我们</h3>
+                                <p class="mb-4">专业团队为您提供一对一咨询服务</p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="text-white hover:text-primary/80 transition-colors"><i class="fa fa-phone text-xl"></i></a>
+                                    <a href="#" class="text-white hover:text-primary/80 transition-colors"><i class="fa fa-envelope text-xl"></i></a>
+                                    <a href="#" class="text-white hover:text-primary/80 transition-colors"><i class="fa fa-weixin text-xl"></i></a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">邮箱</label>
-                            <input type="email" id="email" name="email" required>
+                        
+                        <div class="md:w-3/5 p-8 md:p-12">
+                            <div class="contact-form">
+                                <h3 class="text-2xl font-bold text-dark mb-6">获取免费咨询</h3>
+                                <form id="contactForm">
+                                    <div class="form-group mb-5">
+                                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fa fa-user text-gray-400"></i>
+                                            </div>
+                                            <input type="text" id="name" name="name" 
+                                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg form-input-focus" 
+                                                placeholder="请输入您的姓名" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-5">
+                                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fa fa-envelope text-gray-400"></i>
+                                            </div>
+                                            <input type="email" id="email" name="email" 
+                                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg form-input-focus" 
+                                                placeholder="请输入您的邮箱" required>
+                                            <div class="email-error-message hidden text-danger text-sm mt-1">
+                                                <i class="fa fa-exclamation-circle mr-1"></i>请输入有效的邮箱地址
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-5">
+                                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">电话</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <i class="fa fa-phone text-gray-400"></i>
+                                            </div>
+                                            <input type="tel" id="phone" name="phone" 
+                                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg form-input-focus" 
+                                                placeholder="请输入您的电话号码" required>
+                                            <div class="phone-error-message hidden text-danger text-sm mt-1">
+                                                <i class="fa fa-exclamation-circle mr-1"></i>请输入有效的手机号码
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-6">
+                                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">需求描述</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 pt-3 flex items-start pointer-events-none">
+                                                <i class="fa fa-comment text-gray-400"></i>
+                                            </div>
+                                            <textarea id="message" name="message" rows="5" 
+                                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg form-input-focus" 
+                                                placeholder="请简要描述您的需求..." required></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" id="submitBtn" 
+                                        class="submit-btn w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center btn-hover">
+                                        <span>提交咨询</span>
+                                        <i class="fa fa-paper-plane ml-2"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">电话</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">需求描述</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">提交咨询</button>
-                    </form>
+                    </div>
                 </div>
+                
                 <div class="contact-info">
-                    <h3>联系信息</h3>
-                    <p><strong>📍 地址：</strong>广东省东莞市澜大岭山镇金桔优艺街2号1栋202室</p>
-                    <p><strong>📞 电话：</strong>+86 136 8018 7389</p>
-                    <p><strong>📧 邮箱：</strong>lanhecatering@163.com</p>
-                    <p><strong>🕒 营业时间：</strong>周一至周五 9:00-18:00</p>
+                    <h3 class="text-2xl font-bold text-primary mb-6">联系信息</h3>
                     
-                    <h3 style="margin-top: 2rem;">为什么选择我们？</h3>
-                    <p>✅ 专业的技术团队</p>
-                    <p>✅ 量身定制的解决方案</p>
-                    <p>✅ 全程跟踪服务</p>
-                    <p>✅ 合理的价格体系</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fa fa-map-marker text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">地址</h4>
+                                <p class="text-gray-600">广东省东莞市大岭山镇金桔优艺街2号1栋202室</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fa fa-phone text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">电话</h4>
+                                <p class="text-gray-600">+86 136 8018 7389</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fa fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">邮箱</h4>
+                                <p class="text-gray-600">lanhe@lanhecatering.cn</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fa fa-clock-o text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-lg mb-1">营业时间</h4>
+                                <p class="text-gray-600">周一至周五 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <h3 class="text-2xl font-bold text-primary mb-6">为什么选择我们？</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-success mr-3"></i>
+                                <span class="text-gray-700">10年餐饮行业经验</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-success mr-3"></i>
+                                <span class="text-gray-700">专业的技术团队</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-success mr-3"></i>
+                                <span class="text-gray-700">量身定制的解决方案</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-success mr-3"></i>
+                                <span class="text-gray-700">全程跟踪服务</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-check-circle text-success mr-3"></i>
+                                <span class="text-gray-700">合理的价格体系</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="script.js"></script>
-</body>
+
     <!-- 页脚 -->
-</html>
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">澜和餐饮</h4>
+                    <p class="text-gray-400 mb-4">专业的餐饮管理解决方案提供商</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">服务</a></li>
+                        <li><a href="#stats" class="text-gray-400 hover:text-white transition-colors">数据</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">服务项目</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">餐厅运营管理</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-gray-400 mr-3 mt-1"></i>
+                            <span class="text-gray-400">广东省东莞市大岭山镇金桔优艺街2号1栋202室</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-gray-400 mr-3 mt-1"></i>
+                            <span class="text-gray-400">+86 136 8018 7389</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-gray-400 mr-3 mt-1"></i>
+                            <span class="text-gray-400">lanhe@lanhecatering.cn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500">
+                <p>&copy; 2025 澜和餐饮管理有限公司. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 通知提示框 -->
+    <div id="notification" class="fixed top-4 right-4 max-w-sm bg-white rounded-lg shadow-xl p-4 transform translate-x-full transition-transform duration-500 ease-in-out z-50 flex items-start">
+        <div id="notificationIcon" class="mr-3 text-xl mt-0.5">
+            <i class="fa fa-check-circle text-success"></i>
+        </div>
+        <div class="flex-1">
+            <h4 id="notificationTitle" class="font-medium text-dark">提交成功</h4>
+            <p id="notificationMessage" class="text-sm text-gray-600 mt-1">感谢您的咨询！我们会尽快与您联系。</p>
+        </div>
+        <button id="closeNotification" class="ml-3 text-gray-400 hover:text-gray-600">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>    
